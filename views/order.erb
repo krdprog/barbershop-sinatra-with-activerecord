@@ -1,0 +1,26 @@
+<form action="/order" method="POST">
+
+	<p><label for="name">Ваше имя:</label></p>
+	<p><input type="text" name="name" value="<%= @name %>"></p>
+
+	<p><label for="phone">Телефон:</label></p>
+	<p><input type="text" name="phone" value="<%= @phone %>"></p>
+
+	<p><label for="datestamp">Выберите дату:</label></p>
+	<p><input type="text" name="datestamp" value="<%= @datestamp %>"></p>
+
+	<p><label for="barber">Парикмахер:</label>
+		<select name="barber">
+			<option value="" selected>Выбрать парикмахера...</option>
+
+			<% @barbers.each do |barber| %>
+			<option value="<%= barber.name %>"><%= barber.name %></option>
+			<% end %>
+
+		</select>
+	</p>
+
+	<br>
+	<p><input type="submit" value="Отправить заявку"></p>
+
+</form>

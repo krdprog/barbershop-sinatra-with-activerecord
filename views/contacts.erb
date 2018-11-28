@@ -1,0 +1,13 @@
+<p><strong>Вы можете отправить нам сообщение через контактную форму:</strong></p>
+
+<form action="/contacts" method="POST">
+
+	<p><label for="name">Ваше имя:</label></p>
+	<p><input type="text" name="name" value="<%= @name %>"></p>
+
+	<p><label for="comment">Текст сообщения:</label></p>
+	<p><textarea rows="10" cols="45" name="comment"></textarea></p>
+
+	<p><input type="submit" value="Отправить сообщение"></p>
+
+</form>
