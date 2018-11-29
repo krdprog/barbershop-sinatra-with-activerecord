@@ -1,16 +1,18 @@
+<p style="color: red"><%= @error %></p>
+
 <form action="/order" method="POST">
 
 	<p><label for="name">Ваше имя:</label></p>
-	<p><input type="text" name="name" value="<%= @name %>"></p>
+	<p><input type="text" name="client[name]" value="<%= @c.name %>"></p>
 
 	<p><label for="phone">Телефон:</label></p>
-	<p><input type="text" name="phone" value="<%= @phone %>"></p>
+	<p><input type="text" name="client[phone]" value="<%= @c.phone %>"></p>
 
 	<p><label for="datestamp">Выберите дату:</label></p>
-	<p><input type="text" name="datestamp" value="<%= @datestamp %>"></p>
+	<p><input type="text" name="client[datestamp]" value="<%= @c.datestamp %>"></p>
 
 	<p><label for="barber">Парикмахер:</label>
-		<select name="barber">
+		<select name="client[barber]">
 			<option value="" selected>Выбрать парикмахера...</option>
 
 			<% @barbers.each do |barber| %>

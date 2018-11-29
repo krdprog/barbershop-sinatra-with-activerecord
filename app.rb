@@ -5,12 +5,18 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:my_database.db"
 
 class Client < ActiveRecord::Base
+	validates :name, presence: true
+	validates :phone, presence: true
+	validates :datestamp, presence: true
+	validates :barber, presence: true
 end
 
 class Barber < ActiveRecord::Base
 end
 
 class Contact < ActiveRecord::Base
+	validates :name, presence: true
+	validates :comment, presence: true
 end
 
 before do
@@ -22,37 +28,38 @@ get '/' do
 end
 
 get '/order' do
+	@c = Client.new
+
 	erb :order
 end
 
 post '/order' do
-	@name = params[:name]
-	@phone = params[:phone]
-	@datestamp = params[:datestamp]
-	@barber = params[:barber]
+	@c = Client.new params[:client]
+	@c.save
 
-	c = Client.new
-	c.name = @name
-	c.phone = @phone
-	c.datestamp = @datestamp
-	c.barber = @barber
-	c.save
-
-	erb :sent
+	if @c.save
+		erb "<p>Thank you!</p>"
+	else
+		@error = @c.errors.full_messages.first
+		erb :order
+	end
 end
 
 get '/contacts' do
+	@c = Contact.new
+
 	erb :contacts
 end
 
 post '/contacts' do
-	@name = params[:name]
-	@comment = params[:comment]
+	@c = Contact.new params[:contact]
+	@c.save
 
-	c = Contact.new
-	c.name = @name
-	c.comment = @comment
-	c.save
+	if @c.save
+		erb "<p>Ваше сообщение отправлено!</p>"
+	else
+		@error = @c.errors.full_messages.first
+		erb :contacts
+	end
 
-	erb :sent_contacts
 end
