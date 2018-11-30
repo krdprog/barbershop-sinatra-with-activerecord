@@ -1,0 +1,19 @@
+<h2>Список записавшихся</h2>
+
+<table border="1" cellpadding="10" cellpadding="0">
+	<tr>
+		<th>Name</th>
+		<th>Phone</th>
+		<th>Date</th>
+		<th>Barber</th>
+	</tr>
+
+<% @clients.each do |client| %>
+	<tr>
+		<td><a href="/clients/<%= client.id %>"><%= client.name %></a></td>
+		<td><%= client.phone %></td>
+		<td><%= client.datestamp %></td>
+		<td><%= client.barber %></td>
+	</tr>
+<% end %>
+</table>

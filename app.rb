@@ -5,8 +5,8 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:my_database.db"
 
 class Client < ActiveRecord::Base
-	validates :name, presence: true
-	validates :phone, presence: true
+	validates :name, presence: true, length: { minimum: 3 }
+	validates :phone, presence: true, numericality: true
 	validates :datestamp, presence: true
 	validates :barber, presence: true
 end
@@ -62,4 +62,26 @@ post '/contacts' do
 		erb :contacts
 	end
 
+end
+
+get '/barber/:id' do
+	@barber = Barber.find(params[:id])
+
+	erb :barber
+end
+
+get '/barber' do
+	redirect '/'
+end
+
+get '/clients' do
+	@clients = Client.order('created_at DESC')
+
+	erb :clients
+end
+
+get '/clients/:id' do
+	@client = Client.find(params[:id])
+
+	erb :client
 end
