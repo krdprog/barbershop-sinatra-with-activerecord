@@ -4,12 +4,12 @@
 
 <form action="/contacts" method="POST">
 
-	<p><label for="name">Ваше имя:</label></p>
-	<p><input type="text" name="contact[name]" value="<%= @c.name %>"></p>
+  <p><label for="name">Ваше имя:</label></p>
+  <p><input type="text" name="contact[name]" value="<%= @c.name %>"></p>
 
-	<p><label for="comment">Текст сообщения:</label></p>
-	<p><textarea rows="10" cols="45" name="contact[comment]"><%= @c.comment %></textarea></p>
+  <p><label for="comment">Текст сообщения:</label></p>
+  <p><textarea rows="10" cols="45" name="contact[comment]"><%= @c.comment %></textarea></p>
 
-	<p><input type="submit" value="Отправить сообщение"></p>
+  <p><input type="submit" value="Отправить сообщение"></p>
 
 </form>
